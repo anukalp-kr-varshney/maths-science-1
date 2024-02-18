@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - Maths And Science With Anukalp</title>
+    <link rel="stylesheet" href="notes.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="https://github.com/anukalp-kr-varshney/ms-anukalp-1/blob/main/anukalp.PNG?raw=true" type="image/x-icon">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen' ></i>
+            <span class="logo navLogo" id="name"><a href="#">MS-Anukalp</a></span>
+            <div class="menu">
+                <div class="logo-toggle">
+                    <span class="logo"><a href="#">MS-Anukalp</a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="notes.html">Notes</a></li>
+                    <li><a href="videos.html">Videos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-moon moon'></i>
+                    <i class='bx bx-sun sun'></i>
+                </div>
+                <div class="searchBox">
+                   <div class="searchToggle">
+                    <i class='bx bx-x cancel'></i>
+                    <i class='bx bx-search search'></i>
+                   </div>
+                    <div class="search-field">
+                        <input type="text" placeholder="Search...">
+                        <i class='bx bx-search'></i>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </nav>
+
+
+<div class="symbol">
+
+    <div class="icon">
+        <i class='bx bxs-book-reader bx-flip-horizontal' ></i>
+    </div>
+
+    <div class="icon-text">
+        <h1>Notes</h1>
+    </div>
+
+</div>
+
+
+<div class="text">
+    <h1>We Publish Our Notes On Telegram...</h1>
+</div>
+
+<div class="steps-intro">
+    <h2>Step By Step Process To Open Notes</h2>
+</div>
+
+<div class="steps">
+
+    <div class="step-1">
+        <h1>1. Open (t.me/msanukalp) On Your Browser</h1>
+    </div>
+
+    <div class="step-1">
+        <h1>2. There You Will Find The Link Of Different Notes</h1>
+    </div>
+
+    <div class="step-1">
+        <h1>3. The Links Will Be Redirected To Google Drive</h1>
+    </div>
+
+    <div class="step-1">
+        <h1 id="bottom">4.There You Can Read As Well As Download The Notes</h1>
+    </div> 
+
+</div>
+
+
+
+
+<section class="footer">
+    <h1>All Rights Reserved @2024</h1>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    const body = document.querySelector("body"),
+          nav = document.querySelector("nav"),
+          modeToggle = document.querySelector(".dark-light"),
+          searchToggle = document.querySelector(".searchToggle"),
+          sidebarOpen = document.querySelector(".sidebarOpen"),
+          siderbarClose = document.querySelector(".siderbarClose");
+          let getMode = localStorage.getItem("mode");
+              if(getMode && getMode === "dark-mode"){
+                body.classList.add("dark");
+              }
+    
+    // js code to toggle search box
+            searchToggle.addEventListener("click" , () =>{
+            searchToggle.classList.toggle("active");
+          });
+     
+          
+    //   js code to toggle sidebar
+    sidebarOpen.addEventListener("click" , () =>{
+        nav.classList.add("active");
+    });
+    body.addEventListener("click" , e =>{
+        let clickedElm = e.target;
+        if(!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")){
+            nav.classList.remove("active");
+        }
+    });
+    </script>
+        
+    </body>
+    </html>

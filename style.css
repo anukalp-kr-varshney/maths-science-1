@@ -1,0 +1,578 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root{
+    --body-color: rgb(235, 224, 224);
+    --nav-color: #4070F4;
+    --side-nav: #010718;
+    --text-color: #FFF;
+    --search-bar: #F2F2F2;
+    --search-text: #010718;
+}
+body{
+    height: 100vh;
+    background-color: var(--body-color);
+}
+body.dark{
+    --body-color: #18191A;
+    --nav-color: #242526;
+    --side-nav: #242526;
+    --text-color: #CCC;
+    --search-bar: #242526;
+}
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    background-color: var(--nav-color);
+    z-index: 100;
+}
+body.dark nav{
+    border: 1px solid #393838;
+}
+nav .nav-bar{
+    position: relative;
+    height: 100%;
+    max-width: 1000px;
+    width: 100%;
+    background-color: var(--nav-color);
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav .nav-bar .sidebarOpen{
+    color: var(--text-color);
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+}
+nav .nav-bar .logo a{
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+}
+.menu .logo-toggle{
+    display: none;
+}
+.nav-bar .nav-links{
+    display: flex;
+    align-items: center;
+}
+.nav-bar .nav-links li{
+    margin: 0 5px;
+    list-style: none;
+}
+.nav-links li a{
+    position: relative;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px;
+}
+.nav-links li a::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.nav-links li:hover a::before{
+    opacity: 1;
+}
+.nav-bar .darkLight-searchBox{
+    display: flex;
+    align-items: center;
+}
+.darkLight-searchBox .dark-light,
+.darkLight-searchBox .searchToggle{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+.dark-light i,
+.searchToggle i{
+    position: absolute;
+    color: var(--text-color);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dark-light i.sun{
+    opacity: 0;
+    pointer-events: none;
+}
+.dark-light.active i.sun{
+    opacity: 1;
+    pointer-events: auto;
+}
+.dark-light.active i.moon{
+    opacity: 0;
+    pointer-events: none;
+}
+.searchToggle i.cancel{
+    opacity: 0;
+    pointer-events: none;
+}
+.searchToggle.active i.cancel{
+    opacity: 1;
+    pointer-events: auto;
+}
+.searchToggle.active i.search{
+    opacity: 0;
+    pointer-events: none;
+}
+.searchBox{
+    position: relative;
+}
+.searchBox .search-field{
+    position: absolute;
+    bottom: -85px;
+    right: 5px;
+    height: 50px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    background-color: var(--nav-color);
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.searchToggle.active ~ .search-field{
+    bottom: -74px;
+    opacity: 1;
+    pointer-events: auto;
+}
+.search-field::before{
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: -4px;
+    height: 12px;
+    width: 12px;
+    background-color: var(--nav-color);
+    transform: rotate(-45deg);
+    z-index: -1;
+}
+.search-field input{
+    height: 100%;
+    width: 100%;
+    padding: 0 45px 0 15px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--search-text);
+    background-color: var(--search-bar);
+}
+body.dark .search-field input{
+    color: var(--text-color);
+}
+.search-field i{
+    position: absolute;
+    color: var(--nav-color);
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+body.dark .search-field i{
+    color: var(--text-color);
+}
+
+.branding{
+    margin-top: 60px;
+}
+
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image img{
+    width: 300px;
+    border-radius: 50%;
+    margin-top: 60px;
+    border: 6px solid var(--nav-color);
+}
+
+.greet{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.greet h1{
+    font-weight: 500;
+    font-size: 38px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.title h1{
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    color: var(--nav-color);  
+    border-bottom: 4px solid var(--nav-color);
+    margin-bottom: 50px;
+}
+
+.down{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.down i{
+    font-size: 60px;
+    margin-bottom:70px;
+}
+
+.courses{
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.courses h1{
+    font-size: 35px;
+    color: #021f32;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #021f32;
+}
+
+.course-1{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
+}
+
+.course-1 img{
+    margin-top: 40px;
+    width: 400px;
+    border-radius: 10px;
+}
+
+.c1-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c1-name h2{
+    font-size: 36px;
+    margin-top: 8px;
+    font-weight: 400;
+}
+
+.c1-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c1-info h3{
+    font-size: 25px;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.c1-attributes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c1-attributes h1{
+    font-size: 25px;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 22px
+}
+
+
+.c1-divert{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c1-divert h2{
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 100px
+}
+
+hr{
+    margin-bottom: 90px;
+}
+
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about h1{
+    font-size: 35px;
+    font-weight: 500;
+    color: #021f32;
+    margin-bottom: 40px;
+    white-space: nowrap;
+            overflow: hidden;
+            animation: typewriter 2s steps(13) infinite alternate,
+                blink 800ms steps(13) infinite normal;
+            border-right: 5px solid black;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 16%;
+    }
+}
+
+@keyframes blink {
+    from {
+        border-color: black;
+    }
+
+    to {
+        border-color: transparent;
+    }
+}
+
+.about-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-info button{
+    font-size: 22px;
+    border: none;
+    outline: none;
+    background: transparent;
+    transition: 0.5s ease-in-out;
+    margin-bottom: 250px;
+}
+
+.about-info button:hover{
+    transform: scale(1.1);
+}
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #021f32;
+    color: white;
+    font-weight: 400;
+}
+
+.perks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perks h1{
+    font-size: 35px;
+    color: #021f32;
+    font-family: 'Nunito', sans-serif;
+    border-bottom: 4px solid #021f32;
+    margin-bottom: 30px;
+}
+
+.perks-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 90px;
+}
+
+.perks-2 li{
+    list-style: armenian;
+    font-size: 25px;
+    font-weight: 500;
+    color: #021f32;
+}
+
+.social{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -12px;
+}
+
+.social button{
+    font-size: 24px;
+    padding: 10px;
+    background-color: lightgreen;
+    border: 1px solid grey;
+    margin-left: 20px;
+    margin-bottom: 90px;
+    transition: 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+.social button:hover{
+    transform: scale(1.2);
+    background-color: lightblue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 790px) {
+    nav .nav-bar .sidebarOpen{
+        display: block;
+    }
+    .c1-info h3{
+        font-size: 20px;
+    }
+    .menu{
+        position: fixed;
+        height: 100%;
+        width: 320px;
+        left: -100%;
+        top: 0;
+        padding: 20px;
+        background-color: var(--side-nav);
+        z-index: 100;
+        transition: all 0.4s ease;
+    }
+    nav.active .menu{
+        left: -0%;
+    }
+    nav.active .nav-bar .navLogo a{
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+    .menu .logo-toggle{
+        display: block;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .logo-toggle .siderbarClose{
+        color: var(--text-color);
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .nav-bar .nav-links{
+        flex-direction: column;
+        padding-top: 30px;
+    }
+    .nav-links li a{
+        display: block;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 425px){
+    .title h1{
+        font-size: 26px;
+    }
+    .social{
+        display: block;
+    }
+    .c1-name h2{
+        font-size: 25px;
+    }
+    .c1-divert h2{
+        margin-top: 90px;
+        font-size: 25px;
+    }
+}
+@media (max-width: 375px){
+    .title h1{
+        font-size: 26px;
+    }
+    .c1-name h2{
+        font-size: 25px;
+    }
+    .social{
+        display: block;
+    }
+    .c1-divert h2{
+        margin-top: 90px;
+        font-size: 20px;
+    }
+}
+@media (max-width: 320px){
+    .title h1{
+        font-size: 20px;
+    }
+    .c1-name h2{
+        font-size: 25px;
+    }
+    .social{
+        display: block;
+    }
+    .c1-divert h2{
+        margin-top: 90px;
+        font-size: 20px;
+    }
+    #name{
+        font-size: 4px;
+    }
+    
+}
